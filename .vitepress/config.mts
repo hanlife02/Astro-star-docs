@@ -123,7 +123,7 @@ export default defineConfig({
       title: 'Astro-star Docs',
       description: 'Documentation for the Astro-star open-source Astro personal site theme',
       themeConfig: {
-        logo: withBase('/astro-star.png'),
+        logo: '/astro-star.png',
         nav: [
           { text: 'Astro-star', link: 'https://github.com/hanlife02/Astro-star' },
           { text: 'Docs', link: '/theme/overview' }
@@ -182,7 +182,7 @@ export default defineConfig({
       title: 'Astro-star 文档',
       description: 'Astro-star 开源 Astro 个人站点主题文档',
       themeConfig: {
-        logo: withBase('/astro-star.png'),
+        logo: '/astro-star.png',
         nav: [
           { text: 'Astro-star', link: 'https://github.com/hanlife02/Astro-star' },
           { text: '文档', link: '/zh/theme/overview' }
