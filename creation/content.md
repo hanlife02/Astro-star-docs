@@ -40,11 +40,11 @@ type: 'Building'
 ---
 ```
 
-| Variables                  | 说明                             |
-| -------------------------- | -------------------------------- |
-| routeSlug                  | 命名文章 URL 的末尾              |
-| title                      | 文章标题                         |
-| description                | 文章描述                         |
-| createdAt                  | 创建日期，不存在时会根据 git 自动生成，一般不需要设置|
-| updatedAt                  | 更新日期，同理 createdAt ,一般不需要设置|
-| type                       | 文章分类 (project 暂时不支持 type 分类)|
+| Variables   | 说明                                                  |
+| ----------- | ----------------------------------------------------- |
+| routeSlug   | 命名文章 URL 的末尾                                   |
+| title       | 文章标题                                              |
+| description | 文章描述                                              |
+| createdAt   | 创建日期，不存在时会根据 git 自动生成，一般不需要设置 |
+| updatedAt   | 更新日期，同理 createdAt ,一般不需要设置              |
+| type        | 文章分类 (project 暂时不支持 type 分类)               |

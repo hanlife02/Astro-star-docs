@@ -20,7 +20,7 @@ order: 10
 
 ## 部署流程
 
-### 1. fork repo 
+### 1. fork repo
 
 打开 [项目地址](https://github.com/hanlife02/Astro-star)并 fork repo
 
@@ -28,7 +28,7 @@ order: 10
 
 ### 2. clone repo
 
-将fork后的repo clone到本地
+将 fork 后的 repo clone 到本地
 
 ```shell
 git clone [fork-repo]
@@ -44,7 +44,7 @@ git clone [fork-repo]
 
 关于修改文章，你可以参考[创作内容](/creation/content.md)这一节内容
 
-### 5. 设置 Actions secrets 
+### 5. 设置 Actions secrets
 
 在 github 打开你 fork 的 repo ,按照下图依次设置下面的 Secrets
 
@@ -71,12 +71,12 @@ git clone [fork-repo]
 | `PM2_APP_NAME`             | `Astro-star`   | PM2 应用名称                     |
 | `APP_PORT`                 | `4321`         | Node 服务端口                    |
 | `PUBLIC_WALINE_SERVER_URL` | 空             | 写入服务器 `.env` 的 Waline 地址 |
-| `ALGOLIA_ADMIN_API_KEY`    | 空             | Algolia的管理密钥                |
-| `ALGOLIA_WRITE_API_KEY`    | 空             | Algolia的写入密钥                |
+| `ALGOLIA_ADMIN_API_KEY`    | 空             | Algolia 的管理密钥               |
+| `ALGOLIA_WRITE_API_KEY`    | 空             | Algolia 的写入密钥               |
 
 ### 6. 推送修改
 
-将 3和4 中的修改提交，并推送到 github 远程 repo
+将 3 和 4 中的修改提交，并推送到 github 远程 repo
 
 ```shell
 git add .
@@ -110,4 +110,4 @@ git push
 
 你可以打开配置完反向代理的域名,此时正确显示你的博客主页，则恭喜你已经完成了全部的部署工作！
 
-如果你需要接入 waline 或 algolia，可以参考 [Waline接入](/deploy/waline.md) 和 [Algolia接入](/deploy/algolia.md)
+如果你需要接入 waline 或 algolia，可以参考 [Waline 接入](/deploy/waline.md) 和 [Algolia 接入](/deploy/algolia.md)
