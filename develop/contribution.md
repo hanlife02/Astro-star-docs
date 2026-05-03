@@ -2,23 +2,23 @@
 order: 10
 ---
 
-# 客制开发与贡献
+# Custom Development & Contribution
 
-开发章节用于记录 Astro-star 的客制开发方式和贡献约定。修改主题前，先确认需求更适合通过配置、内容还是源码实现。
+The Development chapter documents how to customize and contribute to Astro-star. Before modifying the theme, first confirm whether your needs are better met through configuration, content, or source code.
 
-## 开发前判断
+## Pre-Development Assessment
 
-| 目标           | 优先位置                       |
-| -------------- | ------------------------------ |
-| 修改站点信息   | `src/config/`                  |
-| 新增或调整文章 | `src/content/`                 |
-| 调整页面结构   | `src/pages/` 和 `src/layouts/` |
-| 扩展展示组件   | `src/components/`              |
-| 修改视觉样式   | `src/style/`                   |
+| Goal                      | Preferred Location              |
+| ------------------------- | ------------------------------- |
+| Modify site information   | `src/config/`                   |
+| Add or adjust articles    | `src/content/`                  |
+| Adjust page structure     | `src/pages/` and `src/layouts/` |
+| Extend display components | `src/components/`               |
+| Modify visual styles      | `src/style/`                    |
 
-只有配置和内容无法覆盖需求时，再进入组件、布局和样式层做开发。
+Only move into component, layout, and style layers when configuration and content alone cannot meet your needs.
 
-## 本地开发流程
+## Local Development Workflow
 
 ```bash
 git clone https://github.com/hanlife02/Astro-star.git
@@ -27,18 +27,18 @@ pnpm install
 pnpm dev
 ```
 
-提交前建议至少运行：
+Before submitting, it is recommended to run at least:
 
 ```bash
 pnpm check
 pnpm build
 ```
 
-## 贡献原则
+## Contribution Guidelines
 
-- 改动保持聚焦，避免把个人站点内容硬编码进通用组件。
-- 新增页面或组件时，同时检查移动端布局和暗色模式。
-- 涉及配置、部署或内容格式变化时，同步更新文档。
-- 不提交密钥、私钥和真实生产环境凭据。
+- Keep changes focused; avoid hardcoding personal site content into shared components.
+- When adding new pages or components, also verify mobile layout and dark mode.
+- When changes involve configuration, deployment, or content format, update the documentation accordingly.
+- Do not commit secrets, private keys, or real production environment credentials.
 
-Astro-star 使用 [Apache License 2.0](https://github.com/hanlife02/Astro-star/blob/main/LICENSE) 开源。
+Astro-star is open-sourced under the [Apache License 2.0](https://github.com/hanlife02/Astro-star/blob/main/LICENSE).

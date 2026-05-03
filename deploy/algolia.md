@@ -2,6 +2,6 @@
 order: 40
 ---
 
-# Algolia 接入
+# Algolia Integration
 
-暂，手写文档好累，等等更新
+TBD -- writing docs by hand is tiring, will update later.

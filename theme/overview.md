@@ -2,16 +2,10 @@
 order: 10
 ---
 
-# 项目定位
+# Theme Overview
 
-Astro-star 是一款基于 Astro 框架搭建的博客主题
+Astro-star is an open-source [personal site theme](https://github.com/hanlife02/Astro-star) built on Astro.
 
-repo: [https://github.com/hanlife02/Astro-star](https://github.com/hanlife02/Astro-star)
+If you want a personal website of your own, Astro-star might be a great choice.
 
-## 适合谁使用
-
-如果你是一个热爱技术、喜欢折腾的人
-
-想拥有一个属于自己的个人网站
-
-又认为本主题近似符合你的审美，不妨可以从本项目开始
+For more information, check out the repo's [README](https://github.com/hanlife02/Astro-star?tab=readme-ov-file#readme).

@@ -2,88 +2,88 @@
 order: 40
 ---
 
-注：此页为 AIGC，仅供参考 (因为反向代理配置方法很多，可以自行搜索)
+Note: This page is AIGC, for reference only (since there are many ways to configure reverse proxy, feel free to search on your own).
 
-# 反向代理配置
+# Reverse Proxy Configuration
 
-Astro-star 运行在服务器的 `4321` 端口（或你自定义的端口），需要通过反向代理将域名指向这个端口。下面提供三种方式，任选其一即可。
+Astro-star runs on the server's port `4321` (or your custom port). You need to point your domain to this port via a reverse proxy. Three methods are provided below -- choose one.
 
-## 方式一：宝塔面板
+## Method 1: BT Panel
 
-如果你的服务器安装了[宝塔面板](https://www.bt.cn/)，可以通过纯界面操作完成配置。
+If your server has [BT Panel](https://www.bt.cn/) installed, you can complete the configuration entirely through the UI.
 
-### 1. 添加站点
+### 1. Add a Site
 
-进入 **网站** → **添加站点**，填写：
+Go to **Website** -> **Add Site**, and fill in:
 
-- **域名**：输入你的域名（如 `example.com`）
-- **根目录**：随意指定即可，后续会通过反代转发
-- 点击 **提交**
+- **Domain**: Enter your domain (e.g., `example.com`)
+- **Document Root**: Can be arbitrary -- requests will be forwarded via reverse proxy
+- Click **Submit**
 
-### 2. 设置反向代理
+### 2. Set Up Reverse Proxy
 
-进入刚创建的站点 → **反向代理** → **添加反向代理**：
+Go to the newly created site -> **Reverse Proxy** -> **Add Reverse Proxy**:
 
-| 字段     | 值                      |
-| -------- | ----------------------- |
-| 代理名称 | `Astro-star`            |
-| 目标 URL | `http://127.0.0.1:4321` |
-| 发送域名 | `$host`                 |
+| Field       | Value                   |
+| ----------- | ----------------------- |
+| Proxy Name  | `Astro-star`            |
+| Target URL  | `http://127.0.0.1:4321` |
+| Send Domain | `$host`                 |
 
-其他保持默认，点击 **提交**。
+Leave other settings as default and click **Submit**.
 
-### 3. 配置 SSL
+### 3. Configure SSL
 
-进入站点 → **SSL** → **Let's Encrypt**：
+Go to the site -> **SSL** -> **Let's Encrypt**:
 
-- 选择 **文件验证**
-- 勾选你的域名
-- 点击 **申请**
+- Choose **File Validation**
+- Check your domain
+- Click **Apply**
 
-申请成功后，开启 **强制 HTTPS**。
-
----
-
-## 方式二：1Panel
-
-如果你的服务器安装了 [1Panel](https://1panel.cn/)，操作同样简单。
-
-### 1. 创建网站
-
-进入 **网站** → **创建网站**：
-
-- **域名**：输入你的域名
-- **其他**：暂不填写
-- 点击 **确认**
-
-### 2. 设置反向代理
-
-进入网站详情 → **反向代理** → **创建反向代理**：
-
-| 字段     | 值                      |
-| -------- | ----------------------- |
-| 名称     | `Astro-star`            |
-| 代理地址 | `http://127.0.0.1:4321` |
-
-点击 **确认**。
-
-### 3. 配置 HTTPS
-
-进入网站详情 → **HTTPS** → **启用 HTTPS**：
-
-- 选择 **自动申请 Let's Encrypt 证书**
-- 勾选你的域名
-- 点击 **保存**
+After the certificate is issued, enable **Force HTTPS**.
 
 ---
 
-## 方式三：手写配置
+## Method 2: 1Panel
 
-如果你没有安装任何面板，可以直接手写 Nginx 或 Caddy 配置。
+If your server has [1Panel](https://1panel.cn/) installed, the process is equally simple.
+
+### 1. Create a Website
+
+Go to **Website** -> **Create Website**:
+
+- **Domain**: Enter your domain
+- **Others**: Leave blank for now
+- Click **Confirm**
+
+### 2. Set Up Reverse Proxy
+
+Go to website details -> **Reverse Proxy** -> **Create Reverse Proxy**:
+
+| Field         | Value                   |
+| ------------- | ----------------------- |
+| Name          | `Astro-star`            |
+| Proxy Address | `http://127.0.0.1:4321` |
+
+Click **Confirm**.
+
+### 3. Configure HTTPS
+
+Go to website details -> **HTTPS** -> **Enable HTTPS**:
+
+- Select **Auto-apply Let's Encrypt Certificate**
+- Check your domain
+- Click **Save**
+
+---
+
+## Method 3: Manual Configuration
+
+If you don't have any panel installed, you can write Nginx or Caddy configuration directly.
 
 ### Nginx
 
-#### 安装 Nginx
+#### Install Nginx
 
 ```bash
 # Ubuntu / Debian
@@ -93,15 +93,15 @@ sudo apt update && sudo apt install nginx -y
 sudo yum install nginx -y
 ```
 
-#### 添加站点配置
+#### Add Site Configuration
 
-创建配置文件：
+Create a configuration file:
 
 ```bash
 sudo vim /etc/nginx/sites-available/astro-star
 ```
 
-写入以下内容（将 `example.com` 替换为你的域名）：
+Write the following content (replace `example.com` with your domain):
 
 ```nginx
 server {
@@ -115,48 +115,48 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
 
-        # WebSocket 支持（开发时可开启）
+        # WebSocket support (enable during development)
         # proxy_set_header Upgrade $http_upgrade;
         # proxy_set_header Connection "upgrade";
     }
 }
 ```
 
-#### 启用站点
+#### Enable the Site
 
 ```bash
-# 创建软链接
+# Create a symlink
 sudo ln -s /etc/nginx/sites-available/astro-star /etc/nginx/sites-enabled/
 
-# 测试配置是否正确
+# Test configuration
 sudo nginx -t
 
-# 重载 Nginx
+# Reload Nginx
 sudo systemctl reload nginx
 ```
 
-#### 配置 HTTPS
+#### Configure HTTPS
 
-使用 Certbot 自动申请免费 SSL 证书：
+Use Certbot to automatically apply for a free SSL certificate:
 
 ```bash
-# 安装 Certbot
+# Install Certbot
 sudo apt install certbot python3-certbot-nginx -y
 
-# 一键申请并自动配置
+# One-click apply and auto-configure
 sudo certbot --nginx -d example.com
 
-# 设置自动续期
+# Enable auto-renewal
 sudo systemctl enable certbot.timer
 ```
 
-完成后访问 `https://example.com` 即可看到站点。
+Once complete, visit `https://example.com` to see your site.
 
 ### Caddy
 
-Caddy 自动管理 SSL 证书，配置更简单。
+Caddy manages SSL certificates automatically, making the configuration even simpler.
 
-#### 安装 Caddy
+#### Install Caddy
 
 ```bash
 # Ubuntu / Debian
@@ -166,17 +166,17 @@ curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo 
 sudo apt update && sudo apt install caddy -y
 ```
 
-> 其他系统安装方式请参考 [Caddy 官方文档](https://caddyserver.com/docs/install)。
+> For installation on other systems, refer to the [Caddy Official Docs](https://caddyserver.com/docs/install).
 
-#### 配置 Caddyfile
+#### Configure Caddyfile
 
-编辑 Caddyfile：
+Edit the Caddyfile:
 
 ```bash
 sudo vim /etc/caddy/Caddyfile
 ```
 
-写入以下内容：
+Write the following content:
 
 ```caddy
 example.com {
@@ -184,10 +184,10 @@ example.com {
 }
 ```
 
-#### 启动 Caddy
+#### Start Caddy
 
 ```bash
 sudo systemctl reload caddy
 ```
 
-Caddy 会自动申请和续期 SSL 证书，无需额外操作。享受 HTTPS 即可。
+Caddy will automatically apply for and renew SSL certificates -- no additional steps needed. Enjoy HTTPS.

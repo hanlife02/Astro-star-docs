@@ -2,51 +2,51 @@
 order: 10
 ---
 
-# 从零开始部署 Astro-star
+# Deploy Astro-star from Scratch
 
-手把手，小白也可以部署！
+Step-by-step guide -- even beginners can deploy!
 
-## 需要什么
+## What You Need
 
-- 一台服务器
-- 一个备案的域名
-- 一个 github 账号
+- A server
+- A registered domain name
+- A GitHub account
 
-## 环境准备
+## Environment Preparation
 
 - Node.js `>= 22`
 - pnpm `10.30.x`
 - PM2
 
-## 部署流程
+## Deployment Process
 
-### 1. fork repo
+### 1. Fork the Repo
 
-打开 [项目地址](https://github.com/hanlife02/Astro-star)并 fork repo
+Open the [project page](https://github.com/hanlife02/Astro-star) and fork the repo.
 
 ![fork](/figures/fork.png)
 
-### 2. clone repo
+### 2. Clone the Repo
 
-将 fork 后的 repo clone 到本地
+Clone the forked repo to your local machine.
 
 ```shell
 git clone [fork-repo]
-# 例如 git clone https://github.com/hanlife02/Astro-star.git
-# 将 hanlife02 替换成你的 github uername
+# e.g. git clone https://github.com/hanlife02/Astro-star.git
+# Replace hanlife02 with your GitHub username
 ```
 
-### 3. 修改配置
+### 3. Modify Configuration
 
-关于修改配置，你可以参考[配置修改](/deploy/config.md)这一节内容
+For modifying configuration, refer to [Configuration Modification](./config.md).
 
-### 4. 修改文章内容
+### 4. Modify Content
 
-关于修改文章，你可以参考[创作内容](/creation/content.md)这一节内容
+For modifying articles, refer to [Creating Content](../creation/content.md).
 
-### 5. 设置 Actions secrets
+### 5. Set Up Actions Secrets
 
-在 github 打开你 fork 的 repo ,按照下图依次设置下面的 Secrets
+Open your forked repo on GitHub, and set the following Secrets as shown below.
 
 ![1](/figures/1.png)
 
@@ -54,29 +54,29 @@ git clone [fork-repo]
 
 ![3](/figures/3.png)
 
-必须：
+Required:
 
-| Secret            | 说明                 |
-| ----------------- | -------------------- |
-| `SSH_HOST`        | 服务器公网 IP 或域名 |
-| `SSH_PRIVATE_KEY` | 部署用 SSH 私钥      |
+| Secret            | Description                    |
+| ----------------- | ------------------------------ |
+| `SSH_HOST`        | Server public IP or domain     |
+| `SSH_PRIVATE_KEY` | SSH private key for deployment |
 
-可选 Secrets (根据需求添加)：
+Optional Secrets (add as needed):
 
-| Secret                     | 默认值         | 说明                             |
-| -------------------------- | -------------- | -------------------------------- |
-| `SSH_USER`                 | `ubuntu`       | SSH 用户                         |
-| `SSH_PORT`                 | `22`           | SSH 端口                         |
-| `DEPLOY_PATH`              | `~/Astro-star` | 部署到服务器的目录               |
-| `PM2_APP_NAME`             | `Astro-star`   | PM2 应用名称                     |
-| `APP_PORT`                 | `4321`         | Node 服务端口                    |
-| `PUBLIC_WALINE_SERVER_URL` | 空             | 写入服务器 `.env` 的 Waline 地址 |
-| `ALGOLIA_ADMIN_API_KEY`    | 空             | Algolia 的管理密钥               |
-| `ALGOLIA_WRITE_API_KEY`    | 空             | Algolia 的写入密钥               |
+| Secret                     | Default        | Description                                |
+| -------------------------- | -------------- | ------------------------------------------ |
+| `SSH_USER`                 | `ubuntu`       | SSH user                                   |
+| `SSH_PORT`                 | `22`           | SSH port                                   |
+| `DEPLOY_PATH`              | `~/Astro-star` | Directory to deploy on the server          |
+| `PM2_APP_NAME`             | `Astro-star`   | PM2 app name                               |
+| `APP_PORT`                 | `4321`         | Node server port                           |
+| `PUBLIC_WALINE_SERVER_URL` | empty          | Waline server URL written to server `.env` |
+| `ALGOLIA_ADMIN_API_KEY`    | empty          | Algolia admin API key                      |
+| `ALGOLIA_WRITE_API_KEY`    | empty          | Algolia write API key                      |
 
-### 6. 推送修改
+### 6. Push Changes
 
-将 3 和 4 中的修改提交，并推送到 github 远程 repo
+Commit the changes from steps 3 and 4, then push to your GitHub remote repo.
 
 ```shell
 git add .
@@ -84,30 +84,30 @@ git commit -m "first deploy"
 git push
 ```
 
-### 7. 检查是否部署成功
+### 7. Check Deployment Status
 
-打开 action ，查看是否有顺利部署
+Open the Actions tab to see if the deployment succeeded.
 
 ![4](/figures/4.png)
 
-如果正确部署，则你的服务器 4321 端口(或你设置的端口)已经成功运行上你的服务
+If deployed successfully, your service is now running on port 4321 (or your custom port) on your server.
 
-如果你会的话，可以去服务器检查端口服务是否正常运行
+If you know how, you can check on the server whether the port service is running correctly.
 
-### 8. 配置域名解析
+### 8. Configure Domain Name Resolution
 
-这里以在阿里云注册的域名为例，将已经备案后的域名解析到对应的服务器，可以参考文档：
+Here we use a domain registered on Alibaba Cloud as an example. Point your registered domain to your server. You can refer to the documentation:
 
-[阿里云文档](https://help.aliyun.com/zh/dws/getting-started/configure-domain-name-resolution)
+[Alibaba Cloud Docs](https://help.aliyun.com/zh/dws/getting-started/configure-domain-name-resolution)
 
 ![5](/figures/5.png)
 
-### 9. 反向代理配置
+### 9. Reverse Proxy Configuration
 
-关于反向代理配置，你可以参考[反向代理配置](/deploy/proxy.md)
+For reverse proxy configuration, refer to [Reverse Proxy Configuration](./proxy.md).
 
 ## Congratulations!
 
-你可以打开配置完反向代理的域名,此时正确显示你的博客主页，则恭喜你已经完成了全部的部署工作！
+Open your domain with the reverse proxy configured. If your blog homepage displays correctly, congratulations -- you have completed the entire deployment!
 
-如果你需要接入 waline 或 algolia，可以参考 [Waline 接入](/deploy/waline.md) 和 [Algolia 接入](/deploy/algolia.md)
+If you need to integrate Waline or Algolia, refer to [Waline Integration](./waline.md) and [Algolia Integration](./algolia.md).

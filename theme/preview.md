@@ -2,30 +2,30 @@
 order: 30
 ---
 
-# 页面预览
+# Page Previews
 
-在线预览：<https://hanlife02.com>
+Live preview: <https://hanlife02.com>
 
-## 首页暗色
+## Home (Dark)
 
-![Astro-star 首页暗色模式](/figures/Home.png)
+![Astro-star home page dark mode](/figures/Home.png)
 
-## 首页亮色
+## Home (Light)
 
-![Astro-star 首页亮色模式](/figures/Home-light.png)
+![Astro-star home page light mode](/figures/Home-light.png)
 
-## 博客列表
+## Blog List
 
-![Astro-star 博客列表](/figures/Blog.png)
+![Astro-star blog list](/figures/Blog.png)
 
-## 博客分类
+## Blog Categories
 
-![Astro-star 博客分类](/figures/Blog-Categories.png)
+![Astro-star blog categories](/figures/Blog-Categories.png)
 
-## 文章详情
+## Article Detail
 
-![Astro-star 文章详情](/figures/Content.png)
+![Astro-star article detail](/figures/Content.png)
 
-## 友链页面
+## Friends Page
 
-![Astro-star 友链页面](/figures/Links.png)
+![Astro-star friends page](/figures/Links.png)

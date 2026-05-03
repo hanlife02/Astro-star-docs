@@ -2,37 +2,37 @@
 order: 20
 ---
 
-# 项目结构
+# Project Structure
 
-希望一个清晰的结构能减少了解的时间成本
+A clear structure saves you time getting oriented.
 
-## 目录地图
+## Directory Map
 
 ```text
 /
-├── public/                 # 静态资源、头像、站点图标、文章图片
-├── scripts/                # 配置迁移、索引同步和构建辅助脚本
+├── public/                 # Static assets, avatars, site icons, article images
+├── scripts/                # Config migration, index sync, and build helper scripts
 ├── src/
-│   ├── components/         # 可复用组件
-│   ├── config/             # 站点、关于、友链和搜索的配置
-│   ├── content/            # blog / note / project 内容集合
-│   ├── layouts/            # 页面布局
-│   ├── pages/              # 路由页面和 API
-│   ├── scripts/            # 浏览器端交互脚本
-│   ├── style/              # 全局样式、组件样式和设计 Token
-│   └── utils/              # Markdown、MDX 和通用工具
+│   ├── components/         # Reusable components
+│   ├── config/             # Site, about, friend links, and search configs
+│   ├── content/            # Blog / note / project content collections
+│   ├── layouts/            # Page layouts
+│   ├── pages/              # Route pages and APIs
+│   ├── scripts/            # Client-side interaction scripts
+│   ├── style/              # Global styles, component styles, and design tokens
+│   └── utils/              # Markdown, MDX, and general utilities
 ├── astro.config.mjs
 ├── ecosystem.config.cjs
 └── package.json
 ```
 
-## 固定路由
+## Fixed Routes
 
-| 路径       | 说明 |
-| ---------- | ---- |
-| `/`        | 首页 |
-| `/about`   | 关于 |
-| `/blog`    | 博文 |
-| `/note`    | 手记 |
-| `/project` | 项目 |
-| `/links`   | 友链 |
+| Path       | Description |
+| ---------- | ----------- |
+| `/`        | Home        |
+| `/about`   | About       |
+| `/blog`    | Blog        |
+| `/note`    | Notes       |
+| `/project` | Projects    |
+| `/links`   | Friends     |

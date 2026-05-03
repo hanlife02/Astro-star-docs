@@ -2,70 +2,70 @@
 order: 40
 ---
 
-# 为何使用
+# Why Use This Theme
 
-想借此来吸引你使用这个主题
+Here is why you might want to give this theme a try.
 
-## 审美
+## Aesthetics
 
-如果你看完了[页面预览](/theme/preview.md)，认为作者的审美与你相悖，或许这里不是你最好的选择
+If you have browsed the [page previews](./preview) and feel the author's taste does not match yours, this may not be the right theme for you.
 
-如果你认为作者的审美勉强能迎合你的需求，不妨试试这款主题，相信你不会后悔
+If you think the author's taste is decent enough to suit your needs, give this theme a try -- you probably won't regret it.
 
-## 作者自认为该主题巧思的地方
+## What the Author Considers Clever About This Theme
 
-很可能是自以为是，轻喷
+Likely self-indulgent -- criticism welcome.
 
-### 1. SSR 动态服务
+### 1. SSR Dynamic Serving
 
-大多数 `Astro` 博客用 `output: 'static'`，这个项目用 `output: 'server'` + `Node` 适配器 + `PM2` 进程守护。这使得它能实现 `Cookie` 主题识别、服务端 API 端点等静态博客做不到的功能。
+Most Astro blogs use `output: 'static'`. This project uses `output: 'server'` + the Node adapter + PM2 process management. This enables features that static blogs cannot achieve, such as cookie-based theme detection and server-side API endpoints.
 
-### 2. "桌面应用壳"架构
+### 2. "Desktop App Shell" Architecture
 
-整个网站运行在一个持久化的 Shell 框架内——类似桌面应用的窗口体验。页面内容通过 slot 投射到 Shell 的不同区域（签名区、侧边导航、主内容区、侧边栏、页脚等），而不是传统博客的"每个页面独立布局"模式。
+The entire site runs inside a persistent shell framework -- similar to a desktop application window experience. Page content is projected into different shell slots (signature area, side navigation, main content area, sidebar, footer, etc.) via slots, rather than the traditional "each page has its own layout" approach.
 
-### 3. Git 文章时间戳
+### 3. Git-based Article Timestamps
 
-文章的创建/修改时间不是手动维护的，而是通过 git log --follow 自动获取每个文件的首末次 commit 时间。
+Article creation and modification times are not manually maintained. They are automatically derived from the first and last commit time of each file via `git log --follow`.
 
-### 4. 部署方式
+### 4. Deployment Workflow
 
-本地修改完后`git push`到`github`，`action` 便会自动完成部署到服务器的工作，非常方便
+After making local changes, a `git push` to GitHub triggers an Action that automatically deploys to the server -- very convenient.
 
-### 5. Waline 评论
+### 5. Waline Comments
 
-接入评论系统，不局限于静态网页
+Integrated comment system, not limited to static pages.
 
-### 6. Algolia 搜索
+### 6. Algolia Search
 
-接入搜索系统，更便于获取内容信息
+Integrated search for easier content discovery.
 
-### 7. 主题设计
+### 7. Theme Design
 
-#### 丝滑的动画
+#### Smooth Animations
 
-为页面间切换和鼠标 hover 页面元素加了很多动画，纵享丝滑
+Many animations have been added for page transitions and element hover effects -- buttery smooth.
 
-#### 导航栏
+#### Navigation Bar
 
-实在看腻了水平导航栏的设计，决定采用 hover 的“展开和折叠”的侧边栏
+Tired of horizontal nav bars, the author opted for a sidebar that expands and collapses on hover.
 
-#### 首页设计
+#### Home Page Design
 
-重新设计了首页的内容--左半个人信息+右半最新文章，尽可能提高可读性
+The home page has been redesigned -- left half for personal info, right half for latest articles -- maximizing readability.
 
-#### 签名设计
+#### Signature Design
 
-将首页链接到左上角的签名 svg 里，更有个性
+The home page link is embedded in the signature SVG in the top-left corner for a more personal touch.
 
-#### 三种背景
+#### Three Backgrounds
 
-雪花背景、代码雨背景、星座连线背景
+Snowflake background, code rain background, and constellation connection background.
 
-#### 纯手写 CSS
+#### Pure Handwritten CSS
 
-零 CSS 框架依赖，所有样式手写。设计变量统一收敛，主题切换靠 `data-theme` 属性一键完成，没有 `Tailwind` 的类名污染
+Zero CSS framework dependency -- all styles are handwritten. Design variables are consolidated, and theme switching is done with a single `data-theme` attribute -- no Tailwind class name pollution.
 
-#### Github repo 渲染
+#### GitHub Repo Rendering
 
-自动将文章内容里单列的 repo 渲染成 card 形式
+A repo URL on its own line in article content is automatically rendered as a card.

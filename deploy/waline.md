@@ -2,18 +2,18 @@
 order: 50
 ---
 
-# Waline 接入
+# Waline Integration
 
-## 部署 waline
+## Deploy Waline
 
-你可以参考[waline 部署](https://waline.js.org/guide/deploy/)
+You can refer to the [Waline Deployment Guide](https://waline.js.org/guide/deploy/).
 
-## 设置 Secrets
+## Set Up Secrets
 
-在 [部署流程第 5 步 - 设置 Actions secrets](/deploy/deploy#_5-设置-actions-secrets) 中，添加以下 Secret：
+In [Deployment Process Step 5 -- Set Up Actions Secrets](./deploy#_5-设置-actions-secrets), add the following Secret:
 
-| Secrets                  | 说明              |
+| Secrets                  | Description       |
 | ------------------------ | ----------------- |
-| PUBLIC_WALINE_SERVER_URL | waline 部署的地址 |
+| PUBLIC_WALINE_SERVER_URL | Waline server URL |
 
-之后重新构建即可
+Then rebuild and you're done.
