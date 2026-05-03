@@ -94,6 +94,20 @@ git push
 
 如果你会的话，可以去服务器检查端口服务是否正常运行
 
-### 8. 反向代理配置
+### 8. 配置域名解析
+
+这里以在阿里云注册的域名为例，将已经备案后的域名解析到对应的服务器，可以参考文档：
+
+[阿里云文档](https://help.aliyun.com/zh/dws/getting-started/configure-domain-name-resolution)
+
+![5](/figures/5.png)
+
+### 9. 反向代理配置
 
 关于反向代理配置，你可以参考[反向代理配置](/deploy/proxy.md)
+
+## Congratulations!
+
+你可以打开配置完反向代理的域名,此时正确显示你的博客主页，则恭喜你已经完成了全部的部署工作！
+
+如果你需要接入 waline 或 algolia，可以参考 [Waline接入](/deploy/waline.md) 和 [Algolia接入](/deploy/algolia.md)
