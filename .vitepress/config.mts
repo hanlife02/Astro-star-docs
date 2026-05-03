@@ -1,7 +1,7 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { basename, extname, join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { defineConfig } from 'vitepress'
+import { defineConfig, withBase } from 'vitepress'
 import type { DefaultTheme } from 'vitepress'
 
 type SectionConfig = {
@@ -98,12 +98,12 @@ export default defineConfig({
   },
   head: [
     ['meta', { name: 'theme-color', content: '#ff5d01' }],
-    ['link', { rel: 'icon', type: 'image/png', href: '/astro-star.png' }],
-    ['link', { rel: 'apple-touch-icon', href: '/astro-star.png' }]
+    ['link', { rel: 'icon', type: 'image/png', href: withBase('/astro-star.png') }],
+    ['link', { rel: 'apple-touch-icon', href: withBase('/astro-star.png') }]
   ],
   themeConfig: {
     i18nRouting: false,
-    logo: '/astro-star.png',
+    logo: withBase('/astro-star.png'),
     nav: [
       { text: 'Astro-star', link: 'https://github.com/hanlife02/Astro-star' },
       { text: '文档', link: '/theme/overview' }
