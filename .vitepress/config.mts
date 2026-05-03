@@ -1,8 +1,11 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { basename, extname, join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { defineConfig, withBase } from 'vitepress'
+import { defineConfig } from 'vitepress'
 import type { DefaultTheme } from 'vitepress'
+
+const base = '/Astro-star-docs/'
+const withBase = (path: string) => `${base}${path.replace(/^\//, '')}`
 
 type SectionConfig = {
   text: string
@@ -79,7 +82,7 @@ function parseFrontmatter(source: string): Record<string, string> {
 }
 
 export default defineConfig({
-  base: '/Astro-star-docs/',
+  base,
   lang: 'zh-CN',
   title: 'Astro-star 文档',
   description: 'Astro-star 开源 Astro 个人站点主题文档',
