@@ -28,7 +28,7 @@ jobs:
         run: corepack pnpm i
 
       - name: Build
-        run: corepack pnpm vitepress build --base /Astro-star-docs/
+        run: corepack pnpm docs:build
 
       - uses: actions/upload-pages-artifact@v3
         with:
