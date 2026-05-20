@@ -36,6 +36,18 @@ git clone [fork-repo]
 # 将 hanlife02 替换成你的 github uername
 ```
 
+### fork 后确认部署分支
+
+打开你 fork 仓库里的 `.github/workflows/deploy.yml`，确认触发部署的分支：
+
+```yaml
+on:
+  push:
+    branches: [main]
+```
+
+普通 fork 建议保留或改成 `main`，因为你的 fork 通常会从默认分支部署。上游维护者仓库可能会把个人内容分支设为 `Ethan`，这样可以把 `main` 保留为可复用的主题模板。
+
 ### 3. 修改配置
 
 关于修改配置，你可以参考[配置修改](./config.md)这一节内容

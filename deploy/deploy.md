@@ -36,6 +36,18 @@ git clone [fork-repo]
 # Replace hanlife02 with your GitHub username
 ```
 
+### Confirm the Deployment Branch After Forking
+
+Open `.github/workflows/deploy.yml` in your fork and confirm the branch that triggers deployment:
+
+```yaml
+on:
+  push:
+    branches: [main]
+```
+
+For a normal fork, keep or change this value to `main`, because your fork usually deploys from its default branch. The upstream maintainer may use another personal content branch, such as `Ethan`, to keep `main` as the reusable theme template.
+
 ### 3. Modify Configuration
 
 For modifying configuration, refer to [Configuration Modification](./config.md).
