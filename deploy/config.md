@@ -48,6 +48,25 @@ site: {
 },
 ```
 
+Article footer actions (articleActions):
+
+```ts
+articleActions: {
+  license: {
+    name: "CC BY-NC-SA 4.0 - NonCommercial-ShareAlike 4.0 International", // License name
+    href: "https://creativecommons.org/licenses/by-nc-sa/4.0/", // License URL
+    statement:
+      "For commercial reuse, contact the site owner for authorization. For non-commercial reuse, cite the source and article link. You may copy, distribute, modify, and build upon the work, but derivative works must use the same license.", // Copyright notice shown on hover
+  },
+  reward: {
+    wechatQrSrc: "/reward/wechat.png",        // WeChat reward QR code, stored under public/reward/
+    alipayQrSrc: "/reward/alipay.png",        // Alipay reward QR code, stored under public/reward/
+  },
+},
+```
+
+If both `wechatQrSrc` and `alipayQrSrc` are empty, the reward icon is hidden. If only one is configured, only that QR code is shown.
+
 ## 2. about.ts -- About Page Configuration
 
 Modify personal intro, social links, toolchain, and timeline on the About page.

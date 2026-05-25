@@ -48,6 +48,25 @@ site: {
 },
 ```
 
+文章末尾操作（articleActions）：
+
+```ts
+articleActions: {
+  license: {
+    name: "CC BY-NC-SA 4.0 - 非商业性使用 - 相同方式共享 4.0 国际", // 版权协议名称
+    href: "https://creativecommons.org/licenses/by-nc-sa/4.0/", // 协议链接
+    statement:
+      "商业转载请联系站长获得授权，非商业转载请注明本文出处及文章链接，您可以自由地在任何媒体以任何形式复制和分发作品，也可以修改和创作，但是分发衍生作品时必须采用相同的许可协议。", // Hover 显示的版权说明
+  },
+  reward: {
+    wechatQrSrc: "/reward/wechat.png",        // 微信赞赏二维码，图片放在 public/reward/ 下
+    alipayQrSrc: "/reward/alipay.png",        // 支付宝赞赏二维码，图片放在 public/reward/ 下
+  },
+},
+```
+
+▎ 如果 `wechatQrSrc` 和 `alipayQrSrc` 都为空，文章末尾不会显示赞赏图标；只配置其中一个时，只显示对应二维码。
+
 ## 2. about.ts — About 页面配置
 
 修改 About 页的个人介绍、社交链接、工具链、时间线。
