@@ -20,6 +20,67 @@ Step-by-step guide -- even beginners can deploy!
 
 ## Deployment Process
 
+### Option 1: Manual Deployment
+
+If you prefer not to use GitHub Actions, you can deploy manually to your server.
+
+**1. Clone the source and install dependencies**
+
+```bash
+ssh username@host
+git clone https://github.com/hanlife02/Astro-star.git
+cd Astro-star
+pnpm install
+```
+
+**2. Configure environment variables**
+
+Create a `.env` file in the project root:
+
+```bash
+# Waline comment server URL
+WALINE_SERVER_URL=https://comment.example.com
+
+# GitHub API token
+GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxx
+
+# CodeTime token
+CODETIME_TOKEN=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+
+# Algolia index sync (only needed for pnpm algolia:sync)
+ALGOLIA_WRITE_API_KEY=xxxxxxxxxxxxxxxx
+ALGOLIA_ADMIN_API_KEY=xxxxxxxxxxxxxxxx
+```
+
+**3. Build and run**
+
+```bash
+pnpm check
+pnpm build
+pm2 start ecosystem.config.cjs
+pm2 save
+```
+
+The default port is `4321`. Change it via an environment variable:
+
+```bash
+PORT=3000 pm2 start ecosystem.config.cjs
+pm2 save
+```
+
+Common operations:
+
+```bash
+pm2 status
+pm2 logs Blog
+pm2 restart Blog
+pm2 stop Blog
+```
+
+For local development, use `pnpm dev` and visit `http://localhost:4321`.
+
+### Option 2: GitHub Actions Auto Deployment (Recommended)
+
 ### 1. Fork the Repo
 
 Open the [project page](https://github.com/hanlife02/Astro-star) and fork the repo.

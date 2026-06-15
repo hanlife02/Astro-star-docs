@@ -4,7 +4,7 @@ order: 20
 
 # 配置修改
 
-所有可修改的配置文件位于 src/config/ 目录下，共 4 个文件：
+所有可修改的配置文件位于 src/config/ 目录下，共 5 个文件：
 
 ## 1. site.ts — 站点全局配置
 
@@ -67,7 +67,54 @@ articleActions: {
 
 ▎ 如果 `wechatQrSrc` 和 `alipayQrSrc` 都为空，文章末尾不会显示赞赏图标；只配置其中一个时，只显示对应二维码。
 
-## 2. about.ts — About 页面配置
+## 2. social.ts — 社交链接配置
+
+配置站点展示的社交链接（邮箱、GitHub、B站、Telegram 等）。
+
+```ts
+export interface SocialLinkItem {
+  id: string;
+  icon: string;
+  name: string;
+  href: string;
+  enabled: boolean;
+}
+
+export const socialLinks = [
+  {
+    id: "mail",
+    icon: "mail",
+    name: "Mail",
+    href: "mailto:hello@example.com",
+    enabled: true,
+  },
+  {
+    id: "github",
+    icon: "github",
+    name: "GitHub",
+    href: "https://github.com/your-name",
+    enabled: true,
+  },
+  {
+    id: "bilibili",
+    icon: "bilibili",
+    name: "Bilibili",
+    href: "https://space.bilibili.com/000000",
+    enabled: true,
+  },
+  {
+    id: "telegram",
+    icon: "telegram",
+    name: "Telegram",
+    href: "https://t.me/your-name",
+    enabled: true,
+  },
+] satisfies readonly SocialLinkItem[];
+```
+
+将 `enabled` 设为 `false` 可隐藏对应社交链接。支持的图标：`mail`、`github`、`bilibili`、`telegram`。
+
+## 3. about.ts — About 页面配置
 
 修改 About 页的个人介绍、社交链接、工具链、时间线。
 
@@ -126,7 +173,7 @@ export const aboutPage = {
 
 图标代号对照：社交区支持 GH / @ / RSS / TG；工具区支持 AS / OB / VS / FG。如需更多图标需要修改对应的 Icon 组件。
 
-## 3. links.ts — 友链页面配置
+## 4. links.ts — 友链页面配置
 
 修改友链页面文案、友链列表、"失联链接"列表、申请规则。
 
@@ -183,7 +230,7 @@ export const lostLinks = [
 
 ▎ 注意：被移动到 lostLinks 的链接不需要 avatarSrc 字段。
 
-## 4. search.ts — Algolia 搜索配置 (非必须)
+## 5. search.ts — Algolia 搜索配置 (非必须)
 
 参考 [Algolia 接入](./algolia.md)
 

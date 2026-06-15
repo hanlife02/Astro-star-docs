@@ -20,6 +20,67 @@ order: 10
 
 ## 部署流程
 
+### 方式一：手动部署
+
+如果你不想使用 GitHub Actions，也可以手动部署到服务器。
+
+**1. 克隆源码并安装依赖**
+
+```bash
+ssh username@host
+git clone https://github.com/hanlife02/Astro-star.git
+cd Astro-star
+pnpm install
+```
+
+**2. 配置环境变量**
+
+在项目根目录创建 `.env` 文件：
+
+```bash
+# Waline 评论服务地址
+WALINE_SERVER_URL=https://comment.example.com
+
+# GitHub API token
+GITHUB_TOKEN=ghp_xxxxxxxxxxxxxxxxxxxx
+
+# CodeTime token
+CODETIME_TOKEN=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+
+# Algolia 索引同步（仅 pnpm algolia:sync 时需要）
+ALGOLIA_WRITE_API_KEY=xxxxxxxxxxxxxxxx
+ALGOLIA_ADMIN_API_KEY=xxxxxxxxxxxxxxxx
+```
+
+**3. 构建与运行**
+
+```bash
+pnpm check
+pnpm build
+pm2 start ecosystem.config.cjs
+pm2 save
+```
+
+默认端口为 `4321`，可通过环境变量修改：
+
+```bash
+PORT=3000 pm2 start ecosystem.config.cjs
+pm2 save
+```
+
+常用运维命令：
+
+```bash
+pm2 status
+pm2 logs Blog
+pm2 restart Blog
+pm2 stop Blog
+```
+
+本地开发预览可使用 `pnpm dev`，访问 `http://localhost:4321`。
+
+### 方式二：GitHub Actions 自动部署（推荐）
+
 ### 1. fork repo
 
 打开 [项目地址](https://github.com/hanlife02/Astro-star)并 fork repo

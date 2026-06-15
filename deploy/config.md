@@ -4,7 +4,7 @@ order: 20
 
 # Configuration Modification
 
-All configurable files are located under the `src/config/` directory. There are 4 files in total:
+All configurable files are located under the `src/config/` directory. There are 5 files in total:
 
 ## 1. site.ts -- Global Site Configuration
 
@@ -67,7 +67,54 @@ articleActions: {
 
 If both `wechatQrSrc` and `alipayQrSrc` are empty, the reward icon is hidden. If only one is configured, only that QR code is shown.
 
-## 2. about.ts -- About Page Configuration
+## 2. social.ts -- Social Links Configuration
+
+Configure the social links displayed on the site (email, GitHub, Bilibili, Telegram, etc.).
+
+```ts
+export interface SocialLinkItem {
+  id: string;
+  icon: string;
+  name: string;
+  href: string;
+  enabled: boolean;
+}
+
+export const socialLinks = [
+  {
+    id: "mail",
+    icon: "mail",
+    name: "Mail",
+    href: "mailto:hello@example.com",
+    enabled: true,
+  },
+  {
+    id: "github",
+    icon: "github",
+    name: "GitHub",
+    href: "https://github.com/your-name",
+    enabled: true,
+  },
+  {
+    id: "bilibili",
+    icon: "bilibili",
+    name: "Bilibili",
+    href: "https://space.bilibili.com/000000",
+    enabled: true,
+  },
+  {
+    id: "telegram",
+    icon: "telegram",
+    name: "Telegram",
+    href: "https://t.me/your-name",
+    enabled: true,
+  },
+] satisfies readonly SocialLinkItem[];
+```
+
+Set `enabled: false` to hide a social link. Supported icons: `mail`, `github`, `bilibili`, `telegram`.
+
+## 3. about.ts -- About Page Configuration
 
 Modify personal intro, social links, toolchain, and timeline on the About page.
 
@@ -126,7 +173,7 @@ export const aboutPage = {
 
 Icon code reference: Social section supports GH / @ / RSS / TG; Tools section supports AS / OB / VS / FG. For additional icons, modify the corresponding Icon component.
 
-## 3. links.ts -- Friend Links Page Configuration
+## 4. links.ts -- Friend Links Page Configuration
 
 Modify the friend links page text, friend links list, "lost links" list, and application rules.
 
@@ -183,7 +230,7 @@ export const lostLinks = [
 
 Note: Links moved to lostLinks do not need the avatarSrc field.
 
-## 4. search.ts -- Algolia Search Configuration (Optional)
+## 5. search.ts -- Algolia Search Configuration (Optional)
 
 Refer to [Algolia Integration](./algolia.md).
 
