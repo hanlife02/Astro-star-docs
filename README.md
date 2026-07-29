@@ -8,7 +8,7 @@ The documentation source now lives in [`hanlife02/Astro-star/docs`](https://gith
 
 ## Deployment
 
-Changes under `Astro-star/docs/` are checked in the main repository first. A successful documentation build starts this repository's Pages workflow with the source commit SHA. This repository then checks out that exact Astro-star revision, builds `docs/`, and publishes the result with GitHub Pages.
+Changes under `Astro-star/docs/` are checked in the main repository first. A successful documentation build starts this repository's Pages workflow with the source commit SHA. This repository also checks the source repository every five minutes, so publishing continues automatically when the cross-repository token is absent or unavailable. It only builds when the deployed source SHA has changed.
 
 The Pages workflow can also be run manually. Its `source_sha` input accepts `main` or a full 40-character lowercase commit SHA.
 
