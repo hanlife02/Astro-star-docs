@@ -1,38 +1,93 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
+    inputs:
+      source_sha:
+        description: Astro-star commit SHA or main
+        required: false
+        default: main
+  repository_dispatch:
+    types: [deploy-docs]
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - uses: actions/checkout@v4
+      - name: Resolve source version
+        id: source
+        env:
+          DISPATCH_SHA: ${{ github.event.client_payload.sha }}
+          MANUAL_SHA: ${{ inputs.source_sha }}
+        run: |
+          source_sha="${DISPATCH_SHA:-${MANUAL_SHA:-main}}"
 
-      - uses: actions/configure-pages@v4
-        id: pages
+          if [[ ! "$source_sha" =~ ^(main|[0-9a-f]{40})$ ]]; then
+            echo "::error::source_sha must be 'main' or a 40-character lowercase commit SHA."
+            exit 1
+          fi
 
-      - uses: actions/setup-node@v4
+          echo "sha=$source_sha" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout docs source
+        env:
+          SOURCE_SHA: ${{ steps.source.outputs.sha }}
+        run: |
+          git init source
+          git -C source remote add origin https://github.com/hanlife02/Astro-star.git
+          git -C source fetch --depth=1 origin "$SOURCE_SHA"
+          git -C source checkout --detach FETCH_HEAD
+
+          resolved_sha=$(git -C source rev-parse HEAD)
+          if [[ "$SOURCE_SHA" =~ ^[0-9a-f]{40}$ ]] && [ "$resolved_sha" != "$SOURCE_SHA" ]; then
+            echo "::error::Resolved commit $resolved_sha does not match requested commit $SOURCE_SHA."
+            exit 1
+          fi
+
+          if [ ! -f source/docs/package.json ]; then
+            echo "::error::The requested Astro-star revision does not contain docs/package.json."
+            exit 1
+          fi
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version-file: '.nvmrc'
+          node-version-file: "source/docs/.nvmrc"
+          package-manager-cache: false
+
+      - name: Setup pnpm
+        working-directory: source/docs
+        run: corepack enable
 
       - name: Install dependencies
-        run: corepack pnpm i
+        working-directory: source/docs
+        run: pnpm install --frozen-lockfile --ignore-workspace
 
       - name: Build
-        run: corepack pnpm docs:build
+        working-directory: source/docs
+        run: pnpm docs:build
 
-      - uses: actions/upload-pages-artifact@v3
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v4
+        id: pages
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: .vitepress/dist
+          path: source/docs/.vitepress/dist
 
-      - uses: actions/deploy-pages@v4
+      - name: Deploy GitHub Pages
+        uses: actions/deploy-pages@v4
         id: deployment
